@@ -5,7 +5,7 @@ import authService from './services/auth';
 
 function App() {
   const [loader, setLoader] = useState(true);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     authService.getCurrentUser()
       .then((userData) => {
