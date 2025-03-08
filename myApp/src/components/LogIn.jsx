@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
-import { login as authLogin } from '../store/authSlice'
-import {Button, Input, Logo} from "./index"
-import {useDispatch} from "react-redux"
-import authService from "../services/auth"
-import {useForm} from "react-hook-form"
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import { login as authLogin } from '../store/authSlice';
+import {Button, Input, Logo} from "./index";
+import {useDispatch} from "react-redux";
+import authService from "../services/auth";
+import {useForm} from "react-hook-form";
 
 function Login() {
     const navigate = useNavigate();
@@ -13,16 +13,16 @@ function Login() {
     const [error, setError] = useState("");
 
     const login = async(data) => {
-        setError("")
+        setError("");
         try {
-            const session = await authService.login(data)
+            const session = await authService.login(data);
             if (session) {
-                const userData = await authService.getCurrentUser()
+                const userData = await authService.getCurrentUser();
                 if(userData) dispatch(authLogin(userData));
-                navigate("/")
+                navigate("/");
             }
         } catch (error) {
-            setError(error.message)
+            setError(error.message);
         }
     }
 
@@ -77,7 +77,7 @@ function Login() {
         </form>
         </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
