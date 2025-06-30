@@ -29,6 +29,7 @@ export class DbServices{
                 }
             );
         }catch(error){
+            console.log("DbServices :: createPost :: error", error);
             throw error;
         }
     }
@@ -47,6 +48,7 @@ export class DbServices{
                 }
             );
         } catch (error) {
+           console.log("DbServices :: updatePost :: error", error);
            throw error; 
         }
     }
@@ -57,11 +59,10 @@ export class DbServices{
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug
-            
             );
             return true;
         } catch (error) {
-            throw error;
+            console.log("DbServices :: deletePost :: error", error);
             return false;
         }
     }
@@ -73,9 +74,8 @@ export class DbServices{
                 config.appwriteCollectionId,
                 slug 
             );
-            return true;
         } catch (error) {
-            throw error;
+            console.log("DbServices :: getPost :: error", error);
             return false;
         }
     }
@@ -87,9 +87,8 @@ export class DbServices{
                 config.appwriteCollectionId,
                 queries
             );
-            return true;
         } catch (error) {
-            throw error;
+            console.log("DbServices :: getPosts :: error", error);
             return false;
         }
     }

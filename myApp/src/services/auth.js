@@ -1,7 +1,6 @@
-// This file will handel all the authentication services from the backend
+// This file will handle all the authentication services from the backend
 import config from '../config/config';
 import { Client, Account, ID } from "appwrite";
-
 
 export class AuthService { 
     client = new Client();
@@ -12,7 +11,6 @@ export class AuthService {
             .setEndpoint(config.appwriteUrl)
             .setProject(config.appwriteProjectId);
         this.account = new Account(this.client);
-            
     }
 
     async createAccount({email, password, name}) {
@@ -22,9 +20,10 @@ export class AuthService {
                 // call another method
                 return this.login({email, password});
             } else {
-               return  userAccount;
+               return userAccount;
             }
         } catch (error) {
+            console.log("AuthService :: createAccount :: error", error);
             throw error;
         }
     }
@@ -33,6 +32,7 @@ export class AuthService {
         try {
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
+            console.log("AuthService :: login :: error", error);
             throw error;
         }
     }
@@ -41,22 +41,19 @@ export class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            throw error;
+            console.log("AuthService :: getCurrentUser :: error", error);
         }
-
         return null;
     }
 
     async logout() {
-
         try {
             await this.account.deleteSessions();
         } catch (error) {
-            throw error;
+            console.log("AuthService :: logout :: error", error);
         }
     }
 }
 
 const authService = new AuthService();
 export default authService;
-

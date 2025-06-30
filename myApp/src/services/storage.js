@@ -15,6 +15,7 @@ export class StorageService{
             this.databases = new Databases(this.client);
             this.storage = new Storage(this.client);
         } catch (error) {
+          console.log("StorageService :: constructor :: error", error);
           throw error;  
         }
     }
@@ -26,10 +27,9 @@ export class StorageService{
                 ID.unique(),
                 file
             );
-            return true;
         } catch (error) {
+           console.log("StorageService :: uploadFile :: error", error);
            throw error;
-           return false; 
         }
     }
 
@@ -39,22 +39,20 @@ export class StorageService{
             config.appwriteBucketId,
             fileId
            );
-           return true; 
         } catch (error) {
-            throw error;
-            return falss;
+            console.log("StorageService :: deleteFile :: error", error);
+            return false;
         }
     }
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         try {
-            return await this.storage.getFilePreview(
+            return this.storage.getFilePreview(
                 config.appwriteBucketId,
                 fileId
             );
-            return true;
         } catch (error) {
-            throw error;
+            console.log("StorageService :: getFilePreview :: error", error);
             return false; 
         }
     }
