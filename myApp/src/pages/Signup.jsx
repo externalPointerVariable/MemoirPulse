@@ -3,8 +3,8 @@ import { Signup as SignupComponent } from '../components/index';
 
 function Signup() {
   return (
-    <div className='py-8'>
-        <SignupComponent />
+    <div className='py-8 bg-gray-900 min-h-screen'>
+      <SignupComponent />
     </div>
   );
 }
