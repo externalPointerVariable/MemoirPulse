@@ -1,8 +1,14 @@
-import React from 'react';
+import memoirpulse from '../assets/memoirpulse.png';
 
-function Logo({width = '100px'}) {
+function Logo({ width = '100px' }) {
   return (
-    <div>Logo</div>
+    <div>
+      <img
+        src={memoirpulse}
+        alt="MemoirPulse Logo"
+        style={{ width }}
+      />
+    </div>
   );
 }
 

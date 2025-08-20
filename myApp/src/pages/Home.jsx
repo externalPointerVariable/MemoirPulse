@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {Github} from "react-icons";
 import dbServices from "../services/database";
 import { Container, PostCard } from "../components";
 
 /** Hero shown when there are no posts (i.e. user not logged in) */
 function HomeHero() {
+  const selector = useSelector()
   return (
     <section className="relative w-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 py-24 text-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -32,6 +35,7 @@ function HomeHero() {
             Log in to immerse yourself in heartfelt memories and personal
             narratives on MemoirPulse.
           </p>
+          {selector}
           <Link
             to="/login"
             className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-200"
